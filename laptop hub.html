@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaptopHub - Laptop Store</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f1f1;
+    color: #222;
+}
+
+/* Header */
+header {
+    background: #282a35;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #04aa6d;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+nav a:hover {
+    color: #04aa6d;
+}
+
+/* Pages */
+.page {
+    display: none;
+    min-height: 80vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(135deg, #282a35, #04aa6d);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #04aa6d;
+    color: white;
+    border: none;
+    padding: 13px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #038b5a;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 0;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 35px;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.card .icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    font-size: 23px;
+}
+
+.card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Laptop Cards */
+.laptop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.laptop {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.laptop-image {
+    height: 170px;
+    background: #282a35;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    margin-bottom: 20px;
+}
+
+.laptop h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #04aa6d;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.specs {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Product Detail */
+.product-detail {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.product-detail h1 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.product-detail ul {
+    margin: 20px 0;
+    padding-left: 25px;
+    line-height: 2;
+}
+
+/* Table */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    background: #282a35;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+/* About */
+.about-box {
+    background: white;
+    padding: 35px;
+    border-radius: 10px;
+    line-height: 1.8;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.about-box h2 {
+    margin-bottom: 15px;
+}
+
+/* Contact */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.contact-box,
+.form-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.contact-box p {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+textarea {
+    height: 130px;
+}
+
+/* Footer */
+footer {
+    background: #282a35;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+footer span {
+    color: #04aa6d;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .cards,
+    .laptop-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">Laptop<span>Hub</span></div>
+
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('laptops')">Laptops</a>
+        <a onclick="showPage('compare')">Compare</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('contact')">Contact</a>
+    </nav>
+</header>
+
+
+<!-- HOME PAGE -->
+<section id="home" class="page active">
+
+    <div class="hero">
+        <h1>Find Your Perfect Laptop</h1>
+        <p>Choose the best laptop for study, business and gaming.</p>
+        <button class="btn" onclick="showPage('laptops')">
+            Shop Laptops
+        </button>
+    </div>
+
+    <div class="container">
+
+        <h2 class="title">Choose Your Laptop</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🎓</div>
+                <h3>Student</h3>
+                <p>
+                    Affordable and reliable laptops for students,
+                    online classes and everyday study.
+                </p>
+                <br>
+                <button class="btn" onclick="showPage('laptops')">
+                    View Laptops
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">💼</div>
+                <h3>Business</h3>
+                <p>
+                    Powerful laptops for office work, business,
+                    meetings and professional tasks.
+                </p>
+                <br>
+                <button class="btn" onclick="showPage('laptops')">
+                    View Laptops
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎮</div>
+                <h3>Gaming</h3>
+                <p>
+                    High-performance gaming laptops with powerful
+                    processors and graphics.
+                </p>
+                <br>
+                <button class="btn" onclick="showPage('laptops')">
+                    View Laptops
+                </button>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <h2 class="title">Why Choose LaptopHub?</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">💰</div>
+                <h3>Best Prices</h3>
+                <p>Quality laptops at affordable prices.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚡</div>
+                <h3>Good Performance</h3>
+                <p>Choose laptops according to your requirements.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🛒</div>
+                <h3>Easy Shopping</h3>
+                <p>Simple and easy laptop selection.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- LAPTOPS PAGE -->
+<section id="laptops" class="page">
+
+<div class="container">
+
+    <h1 class="title">Our Laptops</h1>
+
+    <!-- STUDENT -->
+    <h2>🎓 Student Laptops</h2>
+    <br>
+
+    <div class="laptop-grid">
+
+        <div class="laptop">
+            <div class="laptop-image">💻</div>
+            <h3>StudyBook 14</h3>
+            <div class="price">PKR 89,999</div>
+
+            <div class="specs">
+                Intel Core i3<br>
+                8GB RAM<br>
+                256GB SSD<br>
+                14" Full HD<br>
+                Battery up to 8 hours
+            </div>
+
+            <button class="btn"
+                onclick="showPage('studybook')">
+                View Details
+            </button>
+        </div>
+
+
+        <div class="laptop">
+            <div class="laptop-image">💻</div>
+            <h3>EduPro 15</h3>
+            <div class="price">PKR 119,999</div>
+
+            <div class="specs">
+                Intel Core i5<br>
+                8GB RAM<br>
+                512GB SSD<br>
+                15.6" Full HD<br>
+                Battery up to 9 hours
+            </div>
+
+            <button class="btn"
+                onclick="showPage('edupro')">
+                View Details
+            </button>
+        </div>
+
+    </div>
+
+
+    <br><br>
+
+    <!-- BUSINESS -->
+    <h2>💼 Business Laptops</h2>
+    <br>
+
+    <div class="laptop-grid">
+
+        <div class="laptop">
+            <div class="laptop-image">💻</div>
+            <h3>WorkMate Pro</h3>
+            <div class="price">PKR 169,999</div>
+
+            <div class="specs">
+                Intel Core i5<br>
+                16GB RAM<br>
+                512GB SSD<br>
+                14" Full HD<br>
+                Battery up to 10 hours
+            </div>
+
+            <button class="btn"
+                onclick="showPage('workmate')">
+                View Details
+            </button>
+        </div>
+
+
+        <div class="laptop">
+            <div class="laptop-image">💻</div>
+            <h3>OfficeBook X</h3>
+            <div class="price">PKR 219,999</div>
+
+            <div class="specs">
+                Intel Core i7<br>
+                16GB RAM<br>
+                1TB SSD<br>
+                15.6" Full HD<br>
+                Battery up to 11 hours
+            </div>
+
+            <button class="btn"
+                onclick="showPage('officebook')">
+                View Details
+            </button>
+        </div>
+
+    </div>
+
+
+    <br><br>
+
+    <!-- GAMING -->
+    <h2>🎮 Gaming Laptops</h2>
+    <br>
+
+    <div class="laptop-grid">
+
+        <div class="laptop">
+            <div class="laptop-image">🎮</div>
+            <h3>GameForce 15</h3>
+            <div class="price">PKR 249,999</div>
+
+            <div class="specs">
+                Intel Core i5<br>
+                16GB RAM<br>
+                512GB SSD<br>
+                NVIDIA RTX Graphics<br>
+                15.6" 144Hz Display
+            </div>
+
+            <button class="btn"
+                onclick="showPage('gameforce')">
+                View Details
+            </button>
+        </div>
+
+
+        <div class="laptop">
+            <div class="laptop-image">🎮</div>
+            <h3>UltraGaming X</h3>
+            <div class="price">PKR 349,999</div>
+
+            <div class="specs">
+                Intel Core i7<br>
+                32GB RAM<br>
+                1TB SSD<br>
+                NVIDIA RTX Graphics<br>
+                16" 165Hz Display
+            </div>
+
+            <button class="btn"
+                onclick="showPage('ultragaming')">
+                View Details
+            </button>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+<!-- STUDYBOOK PRODUCT -->
+<section id="studybook" class="page">
+
+<div class="container">
+
+<div class="product-detail">
+
+<h1>StudyBook 14</h1>
+
+<div class="price">PKR 89,999</div>
+
+<h2>Product Specifications</h2>
+
+<ul>
+<li>Intel Core i3 Processor</li>
+<li>8GB RAM</li>
+<li>256GB SSD</li>
+<li>14-inch Full HD Display</li>
+<li>Battery Backup up to 8 Hours</li>
+<li>Lightweight Design</li>
+<li>Suitable for Students</li>
+</ul>
+
+<p>
+StudyBook 14 is an affordable laptop designed for students,
+online classes, browsing and everyday work.
+</p>
+
+<br>
+
+<button class="btn" onclick="showPage('laptops')">
+← Back to Laptops
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- EDUPRO PRODUCT -->
+<section id="edupro" class="page">
+
+<div class="container">
+
+<div class="product-detail">
+
+<h1>EduPro 15</h1>
+
+<div class="price">PKR 119,999</div>
+
+<h2>Product Specifications</h2>
+
+<ul>
+<li>Intel Core i5 Processor</li>
+<li>8GB RAM</li>
+<li>512GB SSD</li>
+<li>15.6-inch Full HD Display</li>
+<li>Battery Backup up to 9 Hours</li>
+<li>Fast SSD Storage</li>
+<li>Perfect for Education</li>
+</ul>
+
+<p>
+EduPro 15 is perfect for students who need more performance
+for education, programming and daily work.
+</p>
+
+<br>
+
+<button class="btn" onclick="showPage('laptops')">
+← Back to Laptops
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- WORKMATE PRODUCT -->
+<section id="workmate" class="page">
+
+<div class="container">
+
+<div class="product-detail">
+
+<h1>WorkMate Pro</h1>
+
+<div class="price">PKR 169,999</div>
+
+<h2>Product Specifications</h2>
+
+<ul>
+<li>Intel Core i5 Processor</li>
+<li>16GB RAM</li>
+<li>512GB SSD</li>
+<li>14-inch Full HD Display</li>
+<li>Battery Backup up to 10 Hours</li>
+<li>Professional Design</li>
+<li>Ideal for Business</li>
+</ul>
+
+<p>
+WorkMate Pro is designed for professionals, office users,
+business meetings and multitasking.
+</p>
+
+<br>
+
+<button class="btn" onclick="showPage('laptops')">
+← Back to Laptops
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- OFFICEBOOK PRODUCT -->
+<section id="officebook" class="page">
+
+<div class="container">
+
+<div class="product-detail">
+
+<h1>OfficeBook X</h1>
+
+<div class="price">PKR 219,999</div>
+
+<h2>Product Specifications</h2>
+
+<ul>
+<li>Intel Core i7 Processor</li>
+<li>16GB RAM</li>
+<li>1TB SSD</li>
+<li>15.6-inch Full HD Display</li>
+<li>Battery Backup up to 11 Hours</li>
+<li>Premium Build</li>
+<li>Professional Business Laptop</li>
+</ul>
+
+<p>
+OfficeBook X provides powerful performance for business,
+office work and professional applications.
+</p>
+
+<br>
+
+<button class="btn" onclick="showPage('laptops')">
+← Back to Laptops
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- GAMEFORCE PRODUCT -->
+<section id="gameforce" class="page">
+
+<div class="container">
+
+<div class="product-detail">
+
+<h1>GameForce 15</h1>
+
+<div class="price">PKR 249,999</div>
+
+<h2>Product Specifications</h2>
+
+<ul>
+<li>Intel Core i5 Processor</li>
+<li>16GB RAM</li>
+<li>512GB SSD</li>
+<li>NVIDIA RTX Graphics</li>
+<li>15.6-inch 144Hz Display</li>
+<li>Gaming Keyboard</li>
+<li>High Performance Cooling</li>
+</ul>
+
+<p>
+GameForce 15 is designed for gaming and demanding applications
+with powerful graphics performance.
+</p>
+
+<br>
+
+<button class="btn" onclick="showPage('laptops')">
+← Back to Laptops
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ULTRAGAMING PRODUCT -->
+<section id="ultragaming" class="page">
+
+<div class="container">
+
+<div class="product-detail">
+
+<h1>UltraGaming X</h1>
+
+<div class="price">PKR 349,999</div>
+
+<h2>Product Specifications</h2>
+
+<ul>
+<li>Intel Core i7 Processor</li>
+<li>32GB RAM</li>
+<li>1TB SSD</li>
+<li>NVIDIA RTX Graphics</li>
+<li>16-inch 165Hz Display</li>
+<li>RGB Gaming Keyboard</li>
+<li>Advanced Cooling System</li>
+</ul>
+
+<p>
+UltraGaming X is our premium gaming laptop for gamers,
+content creators and demanding users.
+</p>
+
+<br>
+
+<button class="btn" onclick="showPage('laptops')">
+← Back to Laptops
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- COMPARE PAGE -->
+<section id="compare" class="page">
+
+<div class="container">
+
+<h1 class="title">Compare Laptops</h1>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>StudyBook 14</th>
+<th>WorkMate Pro</th>
+<th>GameForce 15</th>
+<th>UltraGaming X</th>
+</tr>
+
+<tr>
+<td>Price</td>
+<td>PKR 89,999</td>
+<td>PKR 169,999</td>
+<td>PKR 249,999</td>
+<td>PKR 349,999</td>
+</tr>
+
+<tr>
+<td>Processor</td>
+<td>Core i3</td>
+<td>Core i5</td>
+<td>Core i5</td>
+<td>Core i7</td>
+</tr>
+
+<tr>
+<td>RAM</td>
+<td>8GB</td>
+<td>16GB</td>
+<td>16GB</td>
+<td>32GB</td>
+</tr>
+
+<tr>
+<td>Storage</td>
+<td>256GB SSD</td>
+<td>512GB SSD</td>
+<td>512GB SSD</td>
+<td>1TB SSD</td>
+</tr>
+
+<tr>
+<td>Display</td>
+<td>14" FHD</td>
+<td>14" FHD</td>
+<td>15.6" 144Hz</td>
+<td>16" 165Hz</td>
+</tr>
+
+<tr>
+<td>Graphics</td>
+<td>Integrated</td>
+<td>Integrated</td>
+<td>NVIDIA RTX</td>
+<td>NVIDIA RTX</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ABOUT PAGE -->
+<section id="about" class="page">
+
+<div class="container">
+
+<h1 class="title">About LaptopHub</h1>
+
+<div class="about-box">
+
+<h2>Our Mission</h2>
+
+<p>
+LaptopHub is a simple laptop shopping website designed to help
+customers find the right laptop according to their needs and budget.
+</p>
+
+<br>
+
+<h2>What We Offer</h2>
+
+<p>
+We offer different types of laptops for students, business users
+and gamers. Our goal is to make laptop shopping simple and easy.
+</p>
+
+<br>
+
+<h2>Why LaptopHub?</h2>
+
+<p>
+We provide clear product specifications, prices and comparison
+options so customers can make better decisions before purchasing
+a laptop.
+</p>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- CONTACT PAGE -->
+<section id="contact" class="page">
+
+<div class="container">
+
+<h1 class="title">Contact Us</h1>
+
+<div class="contact-grid">
+
+<div class="contact-box">
+
+<h2>Shop Information</h2>
+
+<p>
+📍 <b>Address:</b><br>
+Main Bazaar, Chiniot, Punjab, Pakistan
+</p>
+
+<p>
+📞 <b>Phone:</b><br>
++92 300 1234567
+</p>
+
+<p>
+📧 <b>Email:</b><br>
+info@laptophub.example
+</p>
+
+<p>
+🕐 <b>Opening Hours:</b><br>
+Monday - Saturday<br>
+10:00 AM - 8:00 PM
+</p>
+
+</div>
+
+
+<div class="form-box">
+
+<h2>Send Us a Message</h2>
+
+<form onsubmit="sendMessage(event)">
+
+<label>Name</label>
+<input type="text" placeholder="Enter your name" required>
+
+<label>Email</label>
+<input type="email" placeholder="Enter your email" required>
+
+<label>Message</label>
+<textarea placeholder="Write your message..." required></textarea>
+
+<button class="btn" type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<p>
+© 2026 <span>LaptopHub</span>. All Rights Reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+/* PAGE NAVIGATION */
+
+function showPage(pageId) {
+
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    let selectedPage = document.getElementById(pageId);
+
+    if (selectedPage) {
+        selectedPage.classList.add("active");
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* CONTACT FORM */
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert("Thank you! Your message has been submitted.");
+
+    event.target.reset();
+}
+
+</script>
+
+</body>
+</html>
